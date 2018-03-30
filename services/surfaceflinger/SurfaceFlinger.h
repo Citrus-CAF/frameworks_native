@@ -353,17 +353,21 @@ private:
                      bool& /*bIgnoreLayers*/,
                      String8& /*nameLOI*/) { }
 
+#ifdef USE_HWC2
     virtual bool updateLayerVisibleNonTransparentRegion(
                      const int& dpy, const sp<Layer>& layer,
                      bool& bIgnoreLayers, String8& nameLOI,
                      uint32_t layerStack);
+#endif
 
     virtual void handleDPTransactionIfNeeded(
                      const Vector<DisplayState>& /*displays*/) { }
 
+#ifdef USE_HWC2
     virtual bool canDrawLayerinScreenShot(
                      const sp<const DisplayDevice>& hw,
                      const sp<Layer>& layer);
+#endif
 
     virtual void setDisplayAnimating(const sp<const DisplayDevice>& /*hw*/) { }
 
@@ -569,6 +573,7 @@ private:
      * Compositing
      */
     void invalidateHwcGeometry();
+
     void computeVisibleRegions(const sp<const DisplayDevice>& displayDevice,
             Region& dirtyRegion, Region& opaqueRegion);
 
